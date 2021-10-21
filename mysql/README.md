@@ -1,5 +1,9 @@
 # mysql
 
+## 简介
+
+MySQL 是世界上最流行的开源数据库。凭借其久经考验的性能、可靠性和易用性，MySQL 已成为基于 Web 的应用程序的领先数据库选择，涵盖从个人项目和网站，到电子商务和信息服务，一直到备受瞩目的整个范围网络资产，包括 Facebook、Twitter、YouTube、Yahoo! 等等。
+
 ## 目录结构规划
 
 ```
@@ -11,7 +15,7 @@ docker
   └─ db
 ```
 
-[_docker-compose.yaml_](docker-compose.yaml)
+[_docker-compose.yml_](docker-compose.yml)
 ```
 version: '3'
 services:
@@ -29,7 +33,17 @@ services:
     volumes:
       - './db:/var/lib/mysql'
       - './conf/my.cnf:/etc/my.cnf''
+    deploy:
+        resources:
+            limits:
+              cpus: '0.10'
+              memory: 800M
+            reservations:
+              cpus: '0.005'
+              memory: 450M
 ```
+_注：deploy 参数后加入了内存限制，表示一般情况下容器的 cpus 使用被限制在 10%, 内存为 800 MB ，当服务器资源紧张时，cpus 占用变为 0.5%, 内存占用被限制为 450 MB_
+_因未加入交换内存限制，部署时加上 `--compatibility` 兼容性参数，类似于 `docker-compose --compatibility up -d`_
 
 ## 使用
 
@@ -70,3 +84,7 @@ $ docker-compose down
  ⠿ Container portainer        Removed                                       
  ⠿ Network portainer_default  Removed 
 ``` 
+
+## Ref
+
+- [Mysql - Official Image | Docker Hub](https://hub.docker.com/_/mysql)

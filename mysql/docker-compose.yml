@@ -14,3 +14,11 @@ services:
     volumes:
       - './db:/var/lib/mysql'
       - './conf/my.cnf:/etc/my.cnf'
+    deploy:
+        resources:
+            limits:
+              cpus: '0.10'
+              memory: 800M
+            reservations:
+              cpus: '0.005'
+              memory: 450M
