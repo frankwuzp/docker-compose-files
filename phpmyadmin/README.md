@@ -13,7 +13,7 @@ docker
   └─ config
 ```
 
-[_docker-compose.yaml_](docker-compose.yaml)
+[_docker-compose.yml_](docker-compose.yml)
 ```
 version: "3"
 services:

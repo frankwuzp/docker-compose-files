@@ -13,7 +13,7 @@ docker
   └─ portainer_data
 ```
 
-[_docker-compose.yaml_](docker-compose.yaml)
+[_docker-compose.yml_](docker-compose.yml)
 ```
 version: "3.3"
 
