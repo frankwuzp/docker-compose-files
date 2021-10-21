@@ -15,10 +15,6 @@ docker-compose 是一个定义和运行多容器 Docker 应用程序的工具。
 4. 停止和删除容器：`docker-compose down`
 
 <font color=#D2691E>_注：把多个 `services:` 写入到同一个文件里，可以实现同时启动，如 MySQL 和 phpMyAdmin 的结合_</font>
-## Ref
-
-- [Overview of Docker Compose | Docker Documentation](https://docs.docker.com/compose/)
-- [docker/awesome-compose](https://github.com/docker/awesome-compose)
 
 ## Others
 
@@ -36,6 +32,12 @@ docker exec -it $容器名 bash
 ```bash
 docker update -m ??m --memory-swap ??m $容器名
 ```
+
+## Ref
+
+- [Overview of Docker Compose](https://docs.docker.com/compose/)
+- [docker/awesome-compose](https://github.com/docker/awesome-compose)
+- [在 docker compose 版本 3 中指定内存和 CPU 限制](https://stackoom.com/question/2rfvf)
 
 ## Changelog
 
