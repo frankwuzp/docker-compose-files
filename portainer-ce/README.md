@@ -40,7 +40,10 @@ volumes:
   portainer_data:
 ```
 
-_注：deploy 参数后加入了内存限制，表示一般情况下容器的 cpus 使用被限制在 5%, 内存为 30 MB ，当服务器资源紧张时，cpus 占用变为 0.05%, 内存占用被限制为 10 MB_
+_注：_
+
+_deploy 参数后加入了内存限制，表示一般情况下容器的 cpus 使用被限制在 5%, 内存为 30 MB ，当服务器资源紧张时，cpus 占用变为 0.05%, 内存占用被限制为 10 MB_
+
 _因未加入交换内存限制，部署时加上 `--compatibility` 兼容性参数，类似于 `docker-compose --compatibility up -d`_
 
 ## 使用
