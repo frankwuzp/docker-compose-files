@@ -1,0 +1,16 @@
+version: '3'
+services:
+  db:
+    image: 'mysql'
+    restart: always
+    container_name: 'mysql'
+    environment:
+      MYSQL_ROOT_PASSWORD: 'your_password'
+      MYSQL_DATABASE: 'datebase_name'
+      MYSQL_USER: 'user_name'
+      MYSQL_PASSWORD: 'your_password'
+    ports:
+      - '3306:3306'
+    volumes:
+      - './db:/var/lib/mysql'
+      - './conf/my.cnf:/etc/my.cnf'
