@@ -64,7 +64,7 @@ _因未加入交换内存限制，部署时加上 `--compatibility` 兼容性参
 
 ## 汉化说明
 
-文件目录中，`www-admin` 和 'www-pihole' 文件夹用于存放对应的 [admin](./chinese-patch/admin/) 和 [pihole](./chinese-patch/pihole/) 汉化包，本仓库已将 [MrHousehao/Pi-hole-Chinese](https://github.com/MrHousehao/Pi-hole-Chinese) [liyachvn/pi-hole-chinese](https://github.com/liyachvn/pi-hole-chinese) 二者合并，可直接拷贝到对应的文件夹。
+文件目录中，`www-admin` 和 `www-pihole` 文件夹用于存放对应的 [admin](./chinese-patch/admin/) 和 [pihole](./chinese-patch/pihole/) 汉化包，本仓库已将 [MrHousehao/Pi-hole-Chinese](https://github.com/MrHousehao/Pi-hole-Chinese) [liyachvn/pi-hole-chinese](https://github.com/liyachvn/pi-hole-chinese) 二者合并，可直接拷贝到对应的文件夹。
 
 ## 使用
 
