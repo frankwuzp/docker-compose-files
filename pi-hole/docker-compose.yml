@@ -1,28 +1,28 @@
 version: "3"
 
-# More info at https://github.com/pi-hole/docker-pi-hole/ and https://docs.pi-hole.net/
+# More info at https://github.com/AdguardTeam/AdGuardHome/wiki/Docker
 services:
-  pihole:
-    container_name: pihole
-    image: pihole/pihole:latest
+  adguardhome:
+    container_name: adguardhome
+    network_mode: "bridge"
+    image: adguard/adguardhome:latest
     ports:
       - "53:53/tcp"
       - "53:53/udp"
       - "67:67/udp"
+      - "69:68/udp"
       - "80:80/tcp"
-    environment:
-      TZ: 'Asia/Shanghai'
-      WEBPASSWORD: your_password
-      # WEBPASSWORD: 'set a secure password here or it will be random'
+      - "3000:3000/tcp"
     # Volumes store your data between container upgrades
     volumes:
-      - './etc-pihole/:/etc/pihole/'
-      - './etc-dnsmasq.d/:/etc/dnsmasq.d/'
-      - './www-pihole/:/var/www/html/pihole'
-      - './www-admin/:/var/www/html/admin'
-      # replaced by Chinese-patch
-    # Recommended but not required (DHCP needs NET_ADMIN)
-    #   https://github.com/pi-hole/docker-pi-hole#note-on-capabilities
-    cap_add:
-      - NET_ADMIN
+      - './work/:/opt/adguardhome/work/'
+      - './conf/:/opt/adguardhome/conf/'
     restart: unless-stopped
+    deploy:
+        resources:
+            limits:
+              cpus: '0.08'
+              memory: 50M
+            reservations:
+              cpus: '0.0005'
+              memory: 30M

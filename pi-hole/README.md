@@ -24,6 +24,7 @@ version: "3"
 services:
   pihole:
     container_name: pihole
+    network_mode: "bridge"
     image: pihole/pihole:latest
     ports:
       - "53:53/tcp"
@@ -49,7 +50,7 @@ services:
     deploy:
         resources:
             limits:
-              cpus: '0.05'
+              cpus: '0.08'
               memory: 50M
             reservations:
               cpus: '0.0005'
@@ -57,7 +58,7 @@ services:
 ```
 _注：_
 
-_deploy 参数后加入了内存限制，表示一般情况下容器的 cpus 使用被限制在 5%, 内存为 50 MB ，当服务器资源紧张时，cpus 占用变为 0.05%, 内存占用被限制为 30 MB_
+_deploy 参数后加入了内存限制，表示一般情况下容器的 cpus 使用被限制在 8%, 内存为 50 MB ，当服务器资源紧张时，cpus 占用变为 0.05%, 内存占用被限制为 30 MB_
 
 _因未加入交换内存限制，部署时加上 `--compatibility` 兼容性参数，类似于 `docker-compose --compatibility up -d`_
 
@@ -74,7 +75,7 @@ _因未加入交换内存限制，部署时加上 `--compatibility` 兼容性参
 预期结果：
 
 ```bash
-docker-compose up -d
+$ docker-compose up -d
 [+] Running 1/1
  ⠿ Container pihole  Started
 ```
@@ -96,6 +97,11 @@ $ docker ps
 CONTAINER ID   IMAGE                    COMMAND                  CREATED             STATUS             PORTS                                                           NAMES
 bff96313aa55   pihole/pihole:latest     "/s6-init"               11 seconds ago   Up 7 seconds (health: starting)   0.0.0.0:553->53/tcp, 0.0.0.0:53->53/udp, :::53->53/tcp, :::53->53/udp, 0.0.0.0:67->67/udp, :::67->67/udp, 0.0.0.0:80->80/tcp, :::80->80/tcp                                                                                                                                                    pihole
 ```
+### 常用规则
+
+- [anti-AD](https://anti-ad.net/domains.txt) 命中率高、兼容性强
+- [Halflife](https://gitee.com/halflife/list/raw/master/ad.txt) 涵盖了 EasyList China、EasyList Lite、CJX 's Annoyance、乘风视频过滤规则，以及补充的其它规则	
+- [罗罗磊磊 adblock.host ](https://share.is26.com/subscribe/adblock.hosts)
 
 ### 停止删除容器
 
@@ -116,3 +122,4 @@ $ docker-compose down
 - [pi-hole/docker-pi-hole](https://github.com/pi-hole/docker-pi-hole)
 - [MrHousehao/Pi-hole-Chinese](https://github.com/MrHousehao/Pi-hole-Chinese)
 - [liyachvn/pi-hole-chinese](https://github.com/liyachvn/pi-hole-chinese)
+- [基于树莓派的全能广告屏蔽助手 —— Pi-hole - 少数派](https://sspai.com/post/58183)
