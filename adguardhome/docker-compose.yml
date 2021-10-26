@@ -1,0 +1,28 @@
+version: "3"
+
+# More info at https://github.com/AdguardTeam/AdGuardHome/wiki/Docker
+services:
+  adguardhome:
+    container_name: adguardhome
+    network_mode: "bridge"
+    image: adguard/adguardhome:latest
+    ports:
+      - "53:53/tcp"
+      - "53:53/udp"
+      - "67:67/udp"
+      - "68:68/udp"
+      - "80:80/tcp"
+      - "3000:3000/tcp"
+    # Volumes store your data between container upgrades
+    volumes:
+      - './work/:/opt/adguardhome/work/'
+      - './conf/:/opt/adguardhome/conf/'
+    restart: unless-stopped
+    deploy:
+        resources:
+            limits:
+              cpus: '0.05'
+              memory: 50M
+            reservations:
+              cpus: '0.0005'
+              memory: 40M
