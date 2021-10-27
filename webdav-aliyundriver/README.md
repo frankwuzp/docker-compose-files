@@ -10,9 +10,10 @@ GitHub 上开源的阿里云盘的webdav协议，只需要简单配置，就可�
 usr
 └─ local
    └─ bin
-      └─ aliyundriver
-         ├── docker-compose.yml
-         └── refresh-token
+      └─ docker
+         └─ aliyundriver
+            ├── docker-compose.yml
+            └── refresh-token
 ```
 
 [_docker-compose.yml_](docker-compose.yml)
@@ -30,10 +31,18 @@ services:
       - ALIYUNDRIVE_AUTH_PASSWORD=admin_password
       - JAVA_OPTS=-Xmx512m
     volumes:
-      - /usr/local/bin/aliyundriver/:/etc/aliyun-driver/
+      - /usr/local/bin/docker/aliyundriver/:/etc/aliyun-driver/
     ports:
       - 49188:8080
     restart: always
+    deploy:
+        resources:
+            limits:
+              cpus: '0.10'
+              memory: 365M 
+            reservations:
+              cpus: '0.0050'
+              memory: 250M    
 ```
 _注：_
 

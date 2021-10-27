@@ -11,7 +11,15 @@ services:
       - ALIYUNDRIVE_AUTH_PASSWORD=admin_password
       - JAVA_OPTS=-Xmx512m
     volumes:
-      - /etc/aliyun-driver/:/etc/aliyun-driver/
+      - /usr/local/bin/docker/aliyundriver/:/etc/aliyun-driver/
     ports:
       - 49188:8080
     restart: always
+    deploy:
+        resources:
+            limits:
+              cpus: '0.10'
+              memory: 365M 
+            reservations:
+              cpus: '0.0050'
+              memory: 250M     

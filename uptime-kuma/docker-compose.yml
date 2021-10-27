@@ -1,0 +1,19 @@
+version: "3"
+services:
+  uptime-kuma:
+    image: louislam/uptime-kuma
+    container_name: uptime-kuma
+    network_mode: "bridge"
+    volumes:
+      - ./data:/app/data
+    ports:
+      - 3001:3001
+    restart: always
+    deploy:
+        resources:
+            limits:
+              cpus: '0.05'
+              memory: 88M 
+            reservations:
+              cpus: '0.0050'
+              memory: 40M 
