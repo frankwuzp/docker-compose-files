@@ -1,10 +1,8 @@
-# Uptime Kume
+# nextcloud
 
 ## 简介
 
-Uptime Kuma 是一个类似于“Uptime Robot”的自托管监控工具。
-
-[Uptime Kuma Demo](https://demo.uptime.kuma.pet:27000/)
+nextcloud 是个人网盘，主打安全（数据存储在本地），官网介绍说是一个存放您所有数据的安全之家。根据用户自己的要求，从任何设备访问和共享您的文件、日历、联系人、邮件等。
 
 ## 目录结构规划
 
@@ -12,9 +10,14 @@ Uptime Kuma 是一个类似于“Uptime Robot”的自托管监控工具。
 usr
 └─ local
    └─ bin
-      └─ uptime-kuma
-         ├── docker-compose.yml
-         └── data
+      └─ docker
+         └─ nextcloud
+            ├── docker-compose.yml
+            └── _data
+                ├── apps
+                ├── config
+                ├── data
+                └── themes
 ```
 
 [_docker-compose.yml_](docker-compose.yml)
