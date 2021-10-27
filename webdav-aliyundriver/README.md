@@ -37,12 +37,12 @@ services:
 ```
 _注：_
 
-_环境变量`JAVA_OPTS=-Xmx512m`表示最大内存限制为512m_
+_环境变量`JAVA_OPTS=-Xmx512m`表示最大内存限制为 512m_
 
 ## 浏览器获取 refresh_token 的方式
 
 1. 浏览器打开阿里云盘官网并登录：https://www.aliyundrive.com/drive/
-2. 按F12打开开发者工具，依次点击 Application -> Local Storage -> `https://www.aliyundrive.com/` , 选择右边的 `token`, 此时可以看到里面的数据，找到 `refresh_token` 的值，复制出来即可。（格式为小写字母和数字，不要复制双引号。例子：ca6bf2175d73as2188efg81f87e55f11）
+2. 按F12打开开发者工具，依次点击 Application -> Local Storage -> `https://www.aliyundrive.com/` , 选择右边的 `token`, 找到 `refresh_token` 的值，复制出来即可。（格式为小写字母和数字，不要复制双引号。例子：ca6bf2175d73as2188efg81f87e55f11）
 
 ## 使用
 
@@ -59,8 +59,7 @@ Creating aliyundriver ... done
 
 ### 登录查看
 
-浏览器输入链接 `http://localhost:端口号/admin` 登录阿里云盘界面，其中 `端口号` 如设定的是 `80` 则可省去。
-
+浏览器输入链接 `http://ip 地址:端口号/admin` 登录阿里云盘界面，在这里 `端口号` 是 49188，如设定的是 `80` 则可省去。
 
 ### 查看容器状态
 
