@@ -4,6 +4,7 @@ services:
 
   portainer:
     container_name: portainer
+    network_mode: "bridge"
     image: portainer/portainer-ce
     restart: unless-stopped
     ports:
@@ -14,7 +15,7 @@ services:
     deploy:
         resources:
             limits:
-              cpus: '0.05'
+              cpus: '0.02'
               memory: 30M 
             reservations:
               cpus: '0.0005'
