@@ -1,0 +1,20 @@
+version: "3"
+
+services:
+  croc:
+    image: schollz/croc
+    container_name: croc
+    network_mode: "croc"
+    restart: always
+    ports:
+      - 9009-9013:9009-9013
+    environment:
+      - CROC_PASS=YOURPASSWORD
+    deploy:
+        resources:
+            limits:
+              cpus: '0.01'
+              memory: 20M 
+            reservations:
+              cpus: '0.0005'
+              memory: 10M 
