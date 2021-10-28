@@ -102,7 +102,7 @@ Stopping croc  ... done
 ``` 
 ### 番外
 
-安装 croc 
+**安装 croc** 
 
 方法一：命令行
 ```bash
@@ -110,6 +110,12 @@ curl https://getcroc.schollz.com | bash
 ```
 
 方法二：仓库下载 [the latest releases](https://github.com/schollz/croc/releases/latest)
+
+**自定义短语**
+
+```bash
+croc send --code [code-phrase] [file(s)-or-folder]
+```
 
 ## Ref
 
