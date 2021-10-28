@@ -36,6 +36,7 @@ docker update -m ??m --memory-swap ??m $容器名
 ## Ref
 
 - [Overview of Docker Compose](https://docs.docker.com/compose/)
+- [docker/compose](https://github.com/docker/compose)
 - [docker/awesome-compose](https://github.com/docker/awesome-compose)
 - [在 docker compose 版本 3 中指定内存和 CPU 限制](https://stackoom.com/question/2rfvf)
 

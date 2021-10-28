@@ -9,15 +9,14 @@ nextcloud 是个人网盘，主打安全（数据存储在本地），官网介�
 ```
 usr
 └─ local
-   └─ bin
-      └─ docker
-         └─ nextcloud
-            ├── docker-compose.yml
-            └── _data
-                ├── apps
-                ├── config
-                ├── data
-                └── themes
+   └─ docker
+      └─ nextcloud
+         ├── docker-compose.yml
+         └── _data
+             ├── apps
+             ├── config
+             ├── data
+             └── themes
 ```
 
 [_docker-compose.yml_](docker-compose.yml)

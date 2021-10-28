@@ -11,11 +11,10 @@ Uptime Kuma 是一个类似于“Uptime Robot”的自托管监控工具。
 ```
 usr
 └─ local
-   └─ bin
-      └─ docker
-         └─ uptime-kuma
-            ├── docker-compose.yml
-            └── data
+   └─ docker
+      └─ uptime-kuma
+         ├── docker-compose.yml
+         └── data
 ```
 
 [_docker-compose.yml_](docker-compose.yml)
