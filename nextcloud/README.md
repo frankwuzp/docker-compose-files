@@ -21,12 +21,13 @@ usr
 
 [_docker-compose.yml_](docker-compose.yml)
 ```
-version: "2"
-
+version: "3.7"
 services:
   db:
     image: mariadb
-    network_mode: "bridge"
+    container_name: mariadb_nc
+    networks: 
+      - nextcloud_network
     restart: always
     command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW --innodb-file-per-table=1 --skip-innodb-read-only-compressed
     volumes:
@@ -34,8 +35,8 @@ services:
     ports:
       - 49306:3306
     environment:
-      - MYSQL_ROOT_PASSWORD=<your_password>
-      - MYSQL_PASSWORD=<your_password>
+      - MYSQL_ROOT_PASSWORD=wzp666
+      - MYSQL_PASSWORD=wzp666
       - MYSQL_DATABASE=nextcloud
       - MYSQL_USER=nextcloud
     deploy:
@@ -46,10 +47,14 @@ services:
             reservations:
               cpus: '0.0050'
               memory: 100M 
+
   app:
     image: nextcloud
     container_name: nextcloud
-    network_mode: "bridge"
+    networks: 
+      - nextcloud_network
+    links:
+      - db
     volumes:
       - ./_data:/var/www/html
       - ./_data/apps:/var/www/html/custom_apps
@@ -59,6 +64,16 @@ services:
     ports:
       - 49166:80
     restart: always
+    environment:
+      - PUID=1001
+      - PGID=1001
+      - TZ=Asia\Shanghai
+      - MYSQL_PASSWORD=wzp666
+      - MYSQL_DATABASE=nextcloud
+      - MYSQL_USER=nextcloud
+      - MYSQL_HOST=db
+    depends_on:
+      - db
     deploy:
         resources:
             limits:
@@ -66,7 +81,15 @@ services:
               memory: 400M 
             reservations:
               cpus: '0.0050'
-              memory: 300M 
+              memory: 300M
+
+volumes:
+  db:
+  _data:
+
+networks:
+  nextcloud_network:
+    external: true
 ```
 _注：_
 
@@ -74,6 +97,12 @@ _deploy 参数后加入了内存和 cpus 限制，部分服务器不支持 CPU �
 _本文件实现了 mariadb 和 nextcloud 的联动，简单方便，开始前需设置好数据库的密码_
 
 ## 使用
+
+### 创建虚拟网络
+
+```bash
+docker network create nextcloud_network
+```
 
 ### 部署服务
 
@@ -151,3 +180,8 @@ $ chmod 775 ./themes -Rf
 - [nextcloud/docker: ⛴ Docker image of Nextcloud](https://github.com/nextcloud/docker)
 - [TechOverflow](https://techoverflow.net/2021/08/17/how-to-fix-nextcloud-4047-innodb-refuses-to-write-tables-with-row_formatcompressed-or-key_block_size/)
 - [NextCloud安装时出现”服务器内部错误” ](https://www.wunote.cn/article/956/)
+
+## Changelog
+
+- 211102 更新 yml 文件的版本
+- 211027 init

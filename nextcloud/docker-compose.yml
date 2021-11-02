@@ -1,9 +1,11 @@
-version: "2"
+version: "3.7"
 
 services:
   db:
     image: mariadb
-    network_mode: "bridge"
+    container_name: mariadb_nc
+    networks: 
+      - nextcloud_network
     restart: always
     command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW --innodb-file-per-table=1 --skip-innodb-read-only-compressed
     volumes:
@@ -11,8 +13,8 @@ services:
     ports:
       - 49306:3306
     environment:
-      - MYSQL_ROOT_PASSWORD=<your_password>
-      - MYSQL_PASSWORD=<your_password>
+      - MYSQL_ROOT_PASSWORD=wzp666
+      - MYSQL_PASSWORD=wzp666
       - MYSQL_DATABASE=nextcloud
       - MYSQL_USER=nextcloud
     deploy:
@@ -23,10 +25,14 @@ services:
             reservations:
               cpus: '0.0050'
               memory: 100M 
+
   app:
     image: nextcloud
     container_name: nextcloud
-    network_mode: "bridge"
+    networks: 
+      - nextcloud_network
+    links:
+      - db
     volumes:
       - ./_data:/var/www/html
       - ./_data/apps:/var/www/html/custom_apps
@@ -36,6 +42,16 @@ services:
     ports:
       - 49166:80
     restart: always
+    environment:
+      - PUID=1001
+      - PGID=1001
+      - TZ=Asia\Shanghai
+      - MYSQL_PASSWORD=wzp666
+      - MYSQL_DATABASE=nextcloud
+      - MYSQL_USER=nextcloud
+      - MYSQL_HOST=db
+    depends_on:
+      - db
     deploy:
         resources:
             limits:
@@ -43,4 +59,12 @@ services:
               memory: 400M 
             reservations:
               cpus: '0.0050'
-              memory: 300M 
+              memory: 300M
+
+volumes:
+  db:
+  _data:
+
+networks:
+  nextcloud_network:
+    external: true
