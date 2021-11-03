@@ -180,6 +180,7 @@ $ chmod 775 ./themes -Rf
 - [nextcloud/docker: ⛴ Docker image of Nextcloud](https://github.com/nextcloud/docker)
 - [TechOverflow](https://techoverflow.net/2021/08/17/how-to-fix-nextcloud-4047-innodb-refuses-to-write-tables-with-row_formatcompressed-or-key_block_size/)
 - [NextCloud安装时出现”服务器内部错误” ](https://www.wunote.cn/article/956/)
+- [env-file and MariaDB in docker-compose - Stack Overflow](https://stackoverflow.com/questions/53921335/env-file-and-mariadb-in-docker-compose)
 
 ## Changelog
 

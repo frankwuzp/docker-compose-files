@@ -1,0 +1,61 @@
+version: "3.9"
+services:
+  db:
+    image: linuxserver/mariadb
+    container_name: mariadb_nc
+    networks: 
+      - nextcloud_network
+    env_file:
+      - mariadb.env
+    volumes:
+      - ./db:/config
+    ports:
+      - 2306:3306
+    restart: unless-stopped
+    deploy:
+        resources:
+            limits:
+              cpus: '0.05'
+              memory: 160M 
+            reservations:
+              cpus: '0.0050'
+              memory: 100M 
+
+  app:
+    image: nextcloud
+    container_name: nextcloud
+    networks: 
+      - nextcloud_network
+    links:
+      - db
+    volumes:
+      - ./_data:/var/www/html
+      - ./_data/apps:/var/www/html/custom_apps
+      - ./_data/config:/var/www/html/config
+      - ./_data/data:/var/www/html/data
+      - ./_data/themes:/var/www/html/themes
+    ports:
+      - 8090:80
+    restart: unless-stopped
+    env_file:
+      - mariadb.env
+    environment:
+      - MYSQL_HOST=db
+    depends_on:
+        - db
+    deploy:
+        resources:
+            limits:
+              cpus: '0.05'
+              memory: 400M 
+            reservations:
+              cpus: '0.0050'
+              memory: 300M
+
+volumes:
+  db:
+  _data:
+
+networks:
+  nextcloud_network:
+    external: true
