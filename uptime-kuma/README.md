@@ -1,4 +1,4 @@
-# Uptime Kume
+# Uptime Kuma
 
 ## 简介
 
