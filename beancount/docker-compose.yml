@@ -1,0 +1,29 @@
+version: "3.9"
+services:
+  app:
+    container_name: beancount-gs
+    image: xdbin/beancount-gs:latest
+    network_mode: "beancount"
+    restart: unless-stopped
+    ports:
+      - "10000:80"
+    # 启动 beancount 服务
+    # volumes 挂载目录会导 /app/public/icons 中的图标被覆盖，这里将默认图标在挂载后重新拷贝图标
+    command: >
+      sh -c "cp -rn /app/public/default_icons/* /app/public/icons && ./beancount-gs -p 80"
+    # 如不需要默认图标，可使用这句命令
+#    command: >
+#      sh -c "./beancount-gs -p 80"
+    volumes:
+      - "./data:/data/beancount"
+      - "./icons:/app/public/icons"
+      - "./config:/app/config"
+      - "./bak:/data/beancount/<$进入 bash 后查看目录名称>/bak"
+    deploy:
+        resources:
+            limits:
+              cpus: '0.05'
+              memory: 66M
+            reservations:
+              cpus: '0.0015'
+              memory: 40M
